@@ -1,0 +1,23 @@
+#在每个事件触发的时候事件的变量是event，插件主类的变量是plugin
+RegisteredEvents:
+  - 'org.bukkit.event.player.PlayerJoinEvent'
+  - 'org.bukkit.event.player.PlayerQuitEvent'
+  - 'com.aystudio.core.forge.event.ForgeEvent'
+#由于1.13以下版本中的joinEvent是setJoinMessage方法没有所以这段再1.13以下中会报错
+org.bukkit.event.player.PlayerJoinEvent:
+  EventPriority: NORMAL
+  Asynchronous: false
+  execute: 'event.setJoinMessage("§a改加入信息由EventTools插件所控制");'
+org.bukkit.event.player.PlayerQuitEvent:
+  EventPriority: NORMAL
+  Asynchronous: false
+  execute: 'event.setQuitMessage("§3改退出信息由EventTools插件所控制")'
+##forgeevent根据你服务端不同而不同，这里的forgeevent需要加AyCore插件才能监听到
+##因为是语言是js的所以不需要强转
+##静态的类的.要用$
+com.aystudio.core.forge.event.ForgeEvent:
+  EventPriority: NORMAL
+  Asynchronous: false
+  ForgeEvent: com.pixelmonmod.pixelmon.api.events.CaptureEvent$SuccessfulCapture
+  execute: "var pokeName = event.getPokemon().getPokemonName();
+  plugin.getServer().broadcastMessage(pokeName);"

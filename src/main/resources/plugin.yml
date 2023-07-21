@@ -1,0 +1,7 @@
+name: EventTools
+main: me.fullIdle.eventtools.EventTools.Main
+version: 1.0
+commands:
+  eventtools:
+    description: reload command
+api-version: 1.16
