@@ -1,9 +1,11 @@
 package me.fullIdle.eventtools.EventTools;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
@@ -55,7 +57,7 @@ public class Main extends JavaPlugin implements Listener {
             myRegisterEvent((Class<? extends Event>) Class.forName(key),this,
                     EventPriority.valueOf(getConfig().getString(key+".EventPriority")),
                     getConfig().getString(key+".ForgeEvent"),
-                    getConfig().getString(key+"execute"),getConfig().getBoolean(key+".Asynchronous"));
+                    getConfig().getString(key+".execute"),getConfig().getBoolean(key+".Asynchronous"));
         }
     }
     public void registerCustomFileEvent() throws ClassNotFoundException {
@@ -72,7 +74,7 @@ public class Main extends JavaPlugin implements Listener {
                 myRegisterEvent((Class<? extends Event>) Class.forName(key),new MyListener(file),
                         EventPriority.valueOf(config.getString(key+".EventPriority")),
                         config.getString(key+".ForgeEvent"),
-                        config.getString(key+"execute"),config.getBoolean(key+".Asynchronous"));
+                        config.getString(key+".execute"),config.getBoolean(key+".Asynchronous"));
             }
         }
     }
