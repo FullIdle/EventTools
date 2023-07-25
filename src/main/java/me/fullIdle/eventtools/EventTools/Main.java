@@ -108,6 +108,10 @@ public class Main extends JavaPlugin implements Listener {
                         engine.put("event",event);
                     }
                     engine.put("plugin",main);
+                    FileConfiguration configuration = myListener instanceof MyListener ?
+                            YamlConfiguration.loadConfiguration(((MyListener) myListener).getFile()):
+                            getConfig();
+                    engine.put("config",configuration);
                     try {
                         engine.eval(execute);
                     } catch (ScriptException e) {
